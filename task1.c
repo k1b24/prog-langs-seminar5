@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 #define print_var(x) printf(#x " is %d", x );
+#define some_const 1
 
 int main() {
-	const int c = 1;
 	int x = 3;
-	print_var(c);
+	print_var(some_const);
 	printf("\n");
 	print_var(x);
 	printf("\n");

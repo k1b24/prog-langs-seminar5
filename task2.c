@@ -17,12 +17,18 @@ void newline_print() { puts(""); }
     struct list_##type* next;                                           \
   };\
 \
-struct list_##type* list_##type##_push(struct list_##type* head, type x) { \
-	struct list_##type *node = (struct list_##type*) malloc(sizeof(struct list_##type));\
-	node->value = x;\
-	node->next = head;\
-	return node;\
-}\
+void list_##type##_push (struct list_##type** head, type value) {             \
+	struct list_##type* next = malloc(sizeof(struct list_##type));       \
+    next -> value = value;                                   \
+    next -> next = NULL;                                     \
+    if (*head == NULL) {                              \
+		*head = next;                                  \
+		return;                                       \
+    }                                               \
+    struct list_##type* tmp = *head;                \
+    while (tmp -> next != NULL) tmp = tmp -> next;  \
+    tmp -> next = next;                             \
+  }                                                 \
 \
 void list_##type##_print(struct list_##type* head) { \
 	struct list_##type *node = head; \
@@ -37,9 +43,11 @@ DEFINE_LIST(int64_t)
 DEFINE_LIST(double)
 
 int main() {
-	struct list_int64_t* head = NULL;
-	head = list_int64_t_push(head, 2);
-	head = list_int64_t_push(head, 3);
-	list_int64_t_print(head);
+	struct list_int64_t* l = NULL;
+	list_int64_t_push(&l, 1);
+	list_int64_t_push(&l, 2);
+	list_int64_t_push(&l, 3);
+	list_int64_t_print(l);
 	//Тут еще можно по аналогии сделать всяких списочков 
+	return 0;
 }
