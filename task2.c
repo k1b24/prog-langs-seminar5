@@ -48,6 +48,11 @@ int main() {
 	list_int64_t_push(&l, 2);
 	list_int64_t_push(&l, 3);
 	list_int64_t_print(l);
-	//Тут еще можно по аналогии сделать всяких списочков 
+
+	struct list_double* ld = NULL;
+	list_double_push(&ld, 4);
+	list_double_push(&ld, 5);
+	list_double_push(&ld, 6);
+	list_double_print(ld);
 	return 0;
 }
