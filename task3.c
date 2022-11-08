@@ -36,7 +36,7 @@ void newline_print() { puts(""); }
   };                                                                    
 
 #define DEFINE_ADD(type)                                              \
-  void list_##type##_push (struct list_##type* old, type value) {             \
+  void list_##type##_push (struct list_##type** old, type value) {             \
      struct list_##type* next = malloc(sizeof(struct list_##type));       \
      next -> value = value;                                   \
      next -> next = NULL;                                     \
@@ -50,7 +50,7 @@ void newline_print() { puts(""); }
                                          \
   }                                                 \
   void list_##type##_print (struct list_##type* list) {    \
-    while(list != NULL) {                           \	
+    while(list != NULL) {                           \
       _print(type, list-> value);                    \
       newline_print();                              \
       list = list -> next;                          \
